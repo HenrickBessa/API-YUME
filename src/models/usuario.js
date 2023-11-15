@@ -1,4 +1,3 @@
-// Import the server module. Ensure that server.js exports the server object correctly.
 import server from '../../server.js';
 
 const Usuario = {

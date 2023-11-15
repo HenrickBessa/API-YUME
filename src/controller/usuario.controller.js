@@ -1,4 +1,4 @@
-import Usuario from '../models/Usuario.js';
+import Usuario from '../models/usuario.js';
 
 export default {
   criarUsuario: (req, res) => {
