@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import firebase from 'firebase-admin';
+import livroRoutes from './src/routes/livro.route.js';
+import generoRoutes from './src/routes/genero.route.js';
 import usuarioRoutes from './src/routes/usuario.route.js';
 import serviceAccount from './credentials.json' assert { type: 'json' };
 import dotenv from 'dotenv';
@@ -15,13 +17,13 @@ const firebaseConfig = {
   credential: firebase.credential.cert(serviceAccount),
   databaseURL: 'https://tabelasapp-4a190-default-rtdb.firebaseio.com'
 };
-
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 export default { database };
 
-
-app.use('/usuario',usuarioRoutes);
+app.use('/', livroRoutes)
+app.use('/', generoRoutes);
+app.use('/',usuarioRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
