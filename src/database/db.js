@@ -1,7 +1,7 @@
 import firebase from 'firebase-admin';
 import serviceAccount from '../../credentials.json' assert { type: 'json' };
 
-const ConnectFirebase = () => {
+const ConnectFirebase = async () => {
   if (!firebase.apps.length) {
     const firebaseConfig = {
       credential: firebase.credential.cert(serviceAccount),

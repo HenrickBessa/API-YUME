@@ -5,44 +5,42 @@ import generoContrtoller from "../controller/genero.controller.js";
 import kitsuController from "../controller/kitsu.controller.js";
 
 
-const router = Express.Router();
-
-
 const RouterBook = () => {
-    const route_book = router;
-    router.post("/create_book", livroController.criarLivro);
-    router.get("/all_books", livroController.listarLivros);
-    router.get("/books/:id", livroController.obterLivroPorId);
-    router.patch("/books/:id", livroController.atualizarLivro);
-    router.delete("/books/:id", livroController.excluirLivro);
+    const route_book = Express.Router();
+    route_book.post("/create_book", livroController.criarLivro);
+    route_book.get("/all_books", livroController.listarLivros);
+    route_book.get("/books/:id", livroController.obterLivroPorId);
+    route_book.patch("/books/:id", livroController.atualizarLivro);
+    route_book.delete("/books/:id", livroController.excluirLivro);
     return route_book;
 }
 
 const RouterUser = () => {
-    const route_user = router;
-    router.post('/create_user', UsuarioController.criarUsuario);
-    router.get('/all_users', UsuarioController.listarUsuarios);
-    router.get('/user/:id', UsuarioController.obterUsuarioPorId);
-    router.patch('/user/:id', UsuarioController.atualizarUsuario);
-    router.delete('/user/:id', UsuarioController.excluirUsuario);
+    const route_user = Express.Router();
+    route_user.post('/create_user', UsuarioController.criarUsuario);
+    route_user.get('/all_users', UsuarioController.listarUsuarios);
+    route_user.get('/user/:id', UsuarioController.obterUsuarioPorId);
+    route_user.patch('/user/:id', UsuarioController.atualizarUsuario);
+    route_user.delete('/user/:id', UsuarioController.excluirUsuario);
     return route_user;
 }
 const RouterGender = () => {
-    const route_gender = router;
-    router.post("/create_gender", generoContrtoller.criarGenero);
-    router.get("/all_genres", generoContrtoller.listarGeneros);
-    router.get("/gender/:id", generoContrtoller.obterGeneroPorId);
-    router.patch("/gender/:id", generoContrtoller.atualizarGenero);
-    router.delete("/gender/:id", generoContrtoller.excluirGenero);
+    const route_gender = Express.Router();
+    route_gender.post("/create_gender", generoContrtoller.criarGenero);
+    route_gender.get("/all_genres", generoContrtoller.listarGeneros);
+    route_gender.get("/gender/:id", generoContrtoller.obterGeneroPorId);
+    route_gender.patch("/gender/:id", generoContrtoller.atualizarGenero);
+    route_gender.delete("/gender/:id", generoContrtoller.excluirGenero);
     return route_gender
 }
 
 const RouterKitsu = () => {
 
-    const router = Express.Router();   
+    const router_kitsu = Express.Router();   
 
-    router.get('/kitsu/anime', kitsuController.getAnimeList);
-    router.get('/kitsu/manga', kitsuController.getMangaList);
+    router_kitsu.get('/kitsu/anime', kitsuController.getAnimeList);
+    router_kitsu.get('/kitsu/manga', kitsuController.getMangaList);
+    return router_kitsu;
 }
 
 export default {
