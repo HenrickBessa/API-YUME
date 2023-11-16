@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import firebase from 'firebase-admin';
+import usuarioRoutes from './src/routes/usuario.route.js';
 import serviceAccount from './credentials.json' assert { type: 'json' };
 import dotenv from 'dotenv';
 
@@ -19,8 +20,8 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 export default { database };
 
-import usuarioRoutes from './src/routes/usuario.route.js';
-app.use('/',usuarioRoutes);
+
+app.use('/usuario',usuarioRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
