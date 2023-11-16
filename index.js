@@ -20,7 +20,7 @@ const database = firebase.database();
 export default { database };
 
 import usuarioRoutes from './src/routes/usuario.route.js';
-app.use('/usuarios',usuarioRoutes);
+app.use('/',usuarioRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

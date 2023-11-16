@@ -1,4 +1,4 @@
-import server from '../../server.js';
+import server from '../../index.js';
 
 const Usuario = {
   create: (usuarioData, callback) => {
