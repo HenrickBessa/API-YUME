@@ -1,10 +1,10 @@
-import server from '../../index.js';
+import server from '../database/db.js';
 
 const Usuario = {
   create: (usuarioData, callback) => {
     try {
       
-      const usuariosRef = server.database.ref('usuarios');
+      const usuariosRef = server.ConnectFirebase.ref('usuarios');
       usuariosRef.push(usuarioData, (error) => {
         if (error) {
           callback(error, null);
@@ -19,7 +19,7 @@ const Usuario = {
 
   getAll: (callback) => {
     try {
-      const usuariosRef = server.database.ref('usuarios');
+      const usuariosRef = server.ConnectFirebase.ref('usuarios');
       usuariosRef.once('value', (snapshot) => {
         const usuarios = snapshot.val();
         callback(null, usuarios);
@@ -33,7 +33,7 @@ const Usuario = {
 
   getById: (userId, callback) => {
     try {
-      const usuariosRef = server.database.ref('usuarios');
+      const usuariosRef = server.ConnectFirebase.ref('usuarios');
       usuariosRef.child(userId).once('value', (snapshot) => {
         const usuario = snapshot.val();
         callback(null, usuario);
@@ -47,7 +47,7 @@ const Usuario = {
 
   update: (userId, usuarioData, callback) => {
     try {
-      const usuariosRef = server.database.ref('usuarios');
+      const usuariosRef = server.ConnectFirebase.ref('usuarios');
       usuariosRef.child(userId).update(usuarioData, (error) => {
         if (error) {
           callback(error, null);
@@ -62,7 +62,7 @@ const Usuario = {
 
   delete: (userId, callback) => {
     try {
-      const usuariosRef = server.database.ref('usuarios');
+      const usuariosRef = server.ConnectFirebase.ref('usuarios');
       usuariosRef.child(userId).remove((error) => {
         if (error) {
           callback(error, null);
