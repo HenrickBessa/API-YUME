@@ -1,12 +1,14 @@
   import dotenv from 'dotenv';
   import express from 'express';
-  import route from './src/routes/route.js';
+  import bodyParser from 'body-parser';
+  import {RouterUser, RouterBook, RouterGender, RouterKitsu} from './src/routes/route.js';
   import db from './src/database/db.js';
-  import kitsu from './src/controller/kitsu.controller.js';
-  
+
+
+ 
   dotenv.config();
   const app = express();
-  app.use(express.json());
+  app.use(bodyParser.json());
   
   const database = () => {
     try {
@@ -19,35 +21,15 @@
   };
 
   database();
- 
-  const Kitsu = () => {
-    console.log('Conectando ao Kitsu...');
-    // kitsu.ListaManga() 
-    // .then(res => console.log('Dados de Mangá:', res))
-    // .catch(err => console.error('Erro ao buscar dados da API Kitsu (Mangá):', err));
-    // kitsu.ListaAnime() 
-    // .then(res => console.log('Dados de Anime:', res))
-    // .catch(err => console.error('Erro ao buscar dados da API Kitsu (Anime):', err));
-  };
-  Kitsu();
+  const err = ()=>{
+    return console.log("informe o caminho correto");
+  }
+  app.use('/', RouterUser());
+  app.use('/', RouterBook());   
+  app.use('/', RouterGender()); 
+  app.use('/', RouterKitsu());
+  app.use('/', err);
 
-
-  console.log(route.RouterBook);
-  app.use('/', route.RouterBook);
-  console.log(route.RouterGender);
-  app.use('/', route.RouterGender);
-  console.log(route.RouterUser);
-  app.use('/', route.RouterUser);
-  console.log(route.RouterKitsu);
-  app.use('/', route.RouterKitsu);
-  
-
-  app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Algo deu errado!');
-  });
-  
- 
   const PORT = process.env.PORT ;
   app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

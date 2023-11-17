@@ -1,11 +1,11 @@
 
 import server from '../database/db.js';
-
+const database = server.ConnectFirebase();
 const Genero = {
   create: (generoData, callback) => {
     try {
      
-      const generosRef = server.ConnectFirebase.ref('generos');
+      const generosRef = database.ref('generos');
       generosRef.push(generoData, (error) => {
         if (error) {
           callback(error, null);
@@ -20,7 +20,7 @@ const Genero = {
 
   getAll: (callback) => {
     try {
-      const generosRef = server.ConnectFirebase.ref('generos');
+      const generosRef = database.ref('livros');
       generosRef.once('value', (snapshot) => {
         const generos = snapshot.val();
         callback(null, generos);
@@ -34,7 +34,7 @@ const Genero = {
 
   getById: (generoId, callback) => {
     try {
-      const generosRef = server.ConnectFirebase.ref('generos');
+      const generosRef = database.ref('livros');
       generosRef.child(generoId).once('value', (snapshot) => {
         const genero = snapshot.val();
         callback(null, genero);
@@ -48,7 +48,7 @@ const Genero = {
 
   update: (generoId, generoData, callback) => {
     try {
-      const generosRef = server.ConnectFirebase.ref('generos');
+      const generosRef = database.ref('livros');
       generosRef.child(generoId).update(generoData, (error) => {
         if (error) {
           callback(error, null);
@@ -63,7 +63,7 @@ const Genero = {
 
   delete: (generoId, callback) => {
     try {
-      const generosRef = server.ConnectFirebase.ref('generos');
+      const generosRef = database.ref('livros');
       generosRef.child(generoId).remove((error) => {
         if (error) {
           callback(error, null);

@@ -3,7 +3,6 @@ import Usuario from '../models/usuario.js';
 export default {
   criarUsuario: (req, res) => {
     const novoUsuarioData = req.body;
-
     Usuario.create(novoUsuarioData, (error, mensagem) => {
       if (error) {
         return res.status(500).json({ error: 'Erro ao criar usuário', details: error.message });
@@ -13,18 +12,18 @@ export default {
   },
 
   listarUsuarios: (req, res) => {
-    
+    console.log("Acessando a função listar Usuarios");
     Usuario.getAll((error, usuarios) => {
       if (error) {
         return res.status(500).json({ error: 'Erro ao buscar usuários', details: error.message });
       }
-      return  res.status(200).json(usuarios), console.log(usuarios);
+      return res.status(200).json(usuarios);
     });
   },
 
   obterUsuarioPorId: (req, res) => {
     const userId = req.params.id;
-
+    console.log("Acessando a função obter Usuario por Id");
     Usuario.getById(userId, (error, usuario) => {
       if (error) {
         return res.status(500).json({ error: 'Erro ao buscar usuário', details: error.message });
@@ -39,7 +38,7 @@ export default {
   atualizarUsuario: (req, res) => {
     const userId = req.params.id;
     const usuarioData = req.body;
-
+    console.log("Acessando a função atualizar Usuario");
     Usuario.update(userId, usuarioData, (error, mensagem) => {
       if (error) {
         return res.status(500).json({ error: 'Erro ao atualizar usuário', details: error.message });
@@ -50,7 +49,7 @@ export default {
 
   excluirUsuario: (req, res) => {
     const userId = req.params.id;
-
+    console.log("Acessando a função excluir Usuario");
     Usuario.delete(userId, (error, mensagem) => {
       if (error) {
         return res.status(500).json({ error: 'Erro ao excluir usuário', details: error.message });

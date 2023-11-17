@@ -1,11 +1,11 @@
 
 import server from '../database/db.js';
-
+const database = server.ConnectFirebase();
 const Livro = {
   create: (livroData, callback) => {
     try {
-      
-      const livrosRef = server.ConnectFirebase.ref('livros');
+      console.log('Acessando Banco de dados para criar um novo livro')
+      const livrosRef = database.ref('livros');
       livrosRef.push(livroData, (error) => {
         if (error) {
           callback(error, null);
@@ -20,7 +20,7 @@ const Livro = {
 
   getAll: (callback) => {
     try {
-      const livrosRef = server.ConnectFirebase.ref('livros');
+      const livrosRef = database.ref('livros');
       livrosRef.once('value', (snapshot) => {
         const livros = snapshot.val();
         callback(null, livros);
@@ -34,7 +34,7 @@ const Livro = {
 
   getById: (livroId, callback) => {
     try {
-      const livrosRef = server.ConnectFirebase.ref('livros');
+      const livrosRef = database.ref('livros');
       livrosRef.child(livroId).once('value', (snapshot) => {
         const livro = snapshot.val();
         callback(null, livro);
@@ -48,7 +48,7 @@ const Livro = {
 
   update: (livroId, livroData, callback) => {
     try {
-      const livrosRef = server.ConnectFirebase.ref('livros');
+      const livrosRef = server.database.ref('livros');
       livrosRef.child(livroId).update(livroData, (error) => {
         if (error) {
           callback(error, null);
@@ -63,7 +63,7 @@ const Livro = {
 
   delete: (livroId, callback) => {
     try {
-      const livrosRef = server.ConnectFirebase.ref('livros');
+      const livrosRef = server.database.ref('livros');
       livrosRef.child(livroId).remove((error) => {
         if (error) {
           callback(error, null);

@@ -34,11 +34,9 @@ const getAnimeList = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;
 
-    const url = `http://localhost:3000/kitsu/manga?page=${page}&pageSize=${pageSize}`;
-    const urlanimal = await axios.get(url);
     const animeList = await fetchFromApi('anime', page, pageSize);
 
-    res.json({animeList, urlanimal});
+    res.json({ animeList });
   } catch (err) {
     res.status(500).send('Error fetching anime data from Kitsu API');
   }
@@ -48,9 +46,10 @@ const getMangaList = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;
-    const urlManga = `http://localhost:3000/kitsu/anime?page=${page}&pageSize=${pageSize}`;
+
     const mangaList = await fetchFromApi('manga', page, pageSize);
-    res.json({mangaList, urlManga});
+
+    res.json({ mangaList });
   } catch (err) {
     res.status(500).send('Error fetching manga data from Kitsu API');
   }
