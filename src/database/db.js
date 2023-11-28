@@ -1,20 +1,20 @@
-import firebase from 'firebase-admin'
-import serviceAccount from '../../credentials.json' assert { type: 'json' }
+// import firebase from 'firebase-admin'
+// import serviceAccount from '../../credentials.json' assert { type: 'json' }
 import dotenv from 'dotenv'
 import axios from 'axios'
 import mongoose  from 'mongoose'
 dotenv.config()
 
-const MONGO = process.env.MONGO
+//const MONGO = process.env.MONGO
 export const ConnectDatabase = async () =>{
-    if(!MONGO)
+    if(!'mongodb+srv://henrickbessa2002:admin@yume.lrac648.mongodb.net/')
     {
         console.log('A string de conexão do MongoDB não está definida.')
         return
     }
     console.log('Conectando DataBase MongoDB...\n....\n.....\n......')
     try{
-        await mongoose.connect(MONGO)
+        await mongoose.connect('mongodb+srv://henrickbessa2002:admin@yume.lrac648.mongodb.net/')
         console.log('Conexão com MongoDB Atlas estabelecida com sucesso!!')    
     }
     catch(error){
