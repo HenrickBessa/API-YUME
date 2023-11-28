@@ -1,17 +1,18 @@
-GET http://localhost:8080/usuarios HTTP/1.1
+GET http://localhost:3000/usuarios HTTP/1.1
 Content-Type: application/json
 ###
 
-GET http://localhost:8080/usuarios/usuario1 HTTP/1.1
+GET http://localhost:3000/usuarios/usuario1 HTTP/1.1
 Content-Type: application/json
 ###
 
-POST http://localhost:8080/usuarios HTTP/1.1
+POST http://localhost:80,
+/usuarios HTTP/1.1
 Content-Type: application/json
 
 {
     "nome": "Filipe",
-    "idade": 60
+        "idade": 60
 }
 ###
 PATCH http://localhost:8080/usuarios/usuario2 HTTP/1.1

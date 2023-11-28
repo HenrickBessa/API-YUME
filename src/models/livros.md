@@ -1,6 +1,6 @@
 
-import server from '../database/db.js';
-const database = server.ConnectFirebase();
+import {ConnectFirebase} from '../database/db.js';
+const database = ConnectFirebase();
 const Livro = {
   create: (livroData, callback) => {
     try {

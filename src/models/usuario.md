@@ -1,5 +1,5 @@
-import server from '../database/db.js';
-const database = server.ConnectFirebase();
+import {ConnectFirebase} from '../database/db.js';
+const database = ConnectFirebase();
 const Usuario = {
   create: (usuarioData, callback) => {
     console.log("Acessando o Firebase para criar um novo usuário");
