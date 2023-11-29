@@ -1,19 +1,19 @@
-import * as bookService from '../services/Book.service.mongo.js';
+import * as bookService from '../services/Book.service.mongo.js'
 
 export const createBook = async (req, res) => {
   try {
-    const book = await bookService.createBookService(req.body);
+    const book = await bookService.createBookService(req.body)
     console.log('Create Book')
-    res.status(201).json(book);
+    res.status(201).json(book).end()
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error.message })
   }
-};
+}
 
 export const listBooks = async (req, res) => {
   try {
-    const books = await bookService.findAllBooksService();
-    res.status(200).json(books);
+    const books = await bookService.findAllBooksService()
+    res.status(200).json(books).end()
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -26,7 +26,7 @@ export const findBookById = async (req, res) => {
       res.status(404).json({ message: 'Livro não encontrado' });
       return;
     }
-    res.status(200).json(book);
+    res.status(200).json(book).end()
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -39,7 +39,7 @@ export const updateBook = async (req, res) => {
       res.status(404).json({ message: 'Livro não encontrado' });
       return;
     }
-    res.status(200).json(book);
+    res.status(200).json(book).end()
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -52,7 +52,7 @@ export const deleteBook = async (req, res) => {
       res.status(404).json({ message: 'Livro não encontrado' });
       return;
     }
-    res.status(200).json({ message: 'Livro excluído com sucesso' });
+    res.status(200).json({ message: 'Livro excluído com sucesso' }).end()
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

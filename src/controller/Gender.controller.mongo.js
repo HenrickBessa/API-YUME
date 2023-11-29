@@ -4,7 +4,7 @@ export const createGender = async (req, res) => {
   try {
     const gender = await genderService.createGenderService(req.body)
     console.log('Create Gênero')
-    res.status(201).json(gender)
+    res.status(201).json(gender).end()
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
@@ -13,7 +13,7 @@ export const createGender = async (req, res) => {
 export const listGenders = async (req, res) => {
   try {
     const genders = await genderService.findAllGendersService()
-    res.status(200).json(genders)
+    res.status(200).json(genders).end()
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -26,7 +26,7 @@ export const findGenderById = async (req, res) => {
       res.status(404).json({ message: 'Gênero não encontrado' })
       return
     }
-    res.status(200).json(gender)
+    res.status(200).json(gender).end()
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -39,7 +39,7 @@ export const updateGender = async (req, res) => {
       res.status(404).json({ message: 'Gênero não encontrado' })
       return
     }
-    res.status(200).json(gender)
+    res.status(200).json(gender).end()
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
@@ -52,7 +52,7 @@ export const deleteGender = async (req, res) => {
       res.status(404).json({ message: 'Gênero não encontrado' })
       return
     }
-    res.status(200).json({ message: 'Gênero excluído com sucesso' })
+    res.status(200).json({ message: 'Gênero excluído com sucesso' }).end()
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
