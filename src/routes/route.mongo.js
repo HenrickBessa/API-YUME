@@ -2,6 +2,7 @@ import Express  from "express"
 import * as userController from '../controller/User.controller.mongo.js'
 import * as bookController from '../controller/Book.controller.mongo.js'
 import * as genderController from '../controller/Gender.controller.mongo.js'
+import * as kitsuController from '../controller/kitsu.controller.js'
 const route = Express.Router()
 export const RouterUser = () =>{
     
@@ -32,4 +33,12 @@ export const RouterGender = ()=>{
 
     return route
     
+}
+export const RouterKitsu = () => {
+    const route = Express.Router();   
+
+    route.get('/kitsu/anime', kitsuController.getAnimeList);
+    route.get('/kitsu/manga', kitsuController.getMangaList);
+
+    return route;
 }

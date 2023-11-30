@@ -64,12 +64,5 @@
 //     return route_gender
 // }
 
-// export const RouterKitsu = () => {
-//     const router_kitsu = Express.Router();   
 
-//     router_kitsu.get('/kitsu/anime', kitsuController.getAnimeList);
-//     router_kitsu.get('/kitsu/manga', kitsuController.getMangaList);
-
-//     return router_kitsu;
-// }
 
