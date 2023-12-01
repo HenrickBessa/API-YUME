@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 
 const genderSchema = new mongoose.Schema({
-  titulo: {
+  title: {
     type: String,
     required: true
   },
-  descricao: {
+  descrition: {
     type: String,
     required: true
   }
