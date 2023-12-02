@@ -1,8 +1,7 @@
   import dotenv from 'dotenv';
   import express, { response } from 'express';
   import bodyParser from 'body-parser';
-  //import {RouterUser, RouterBook, RouterGender, RouterKitsu} from './src/routes/route.js';
-  import {RouterUser, RouterBook, RouterGender, RouterKitsu} from './src/routes/route.mongo.js'
+  import {RouterUser, RouterManga, RouterGender, RouterKitsu} from './src/routes/route.mongo.js'
 
   import {ConnectDatabase, ConnectAnilist} from './src/database/db.js';
 
@@ -23,7 +22,7 @@
 ConnectDatabase()
 
   app.use('/', RouterUser());
-  app.use('/', RouterBook());   
+  app.use('/', RouterManga());   
   app.use('/', RouterGender()); 
   app.use('/', RouterKitsu());
   app.get('/', (req,res)=>{

@@ -1,6 +1,6 @@
 import Express  from "express"
 import * as userController from '../controller/User.controller.mongo.js'
-import * as bookController from '../controller/Book.controller.mongo.js'
+import * as mangaController from '../controller/Mangas.controller.mongo.js'
 import * as genderController from '../controller/Gender.controller.mongo.js'
 import * as kitsuController from '../controller/kitsu.controller.js'
 const route = Express.Router()
@@ -15,12 +15,12 @@ export const RouterUser = () =>{
 
     return route
 }
-export const RouterBook = ()=>{
-    route.post('/create_book_mongo', bookController.createBook)
-    route.get('/all_books_mongo', bookController.listBooks)
-    route.get('/book_mongo/:id', bookController.findBookById)
-    route.patch('/book_mongo/:id', bookController.updateBook)
-    route.delete('book_mongo/:id', bookController.deleteBook)
+export const RouterManga = ()=>{
+    route.post('/create_manga_mongo', mangaController.createMangas)
+    route.get('/all_mangas_mongo', mangaController.listMangas)
+    route.get('/manga_mongo/:id', mangaController.findMangaById)
+    route.patch('/manga_mongo/:id', mangaController.updateManga)
+    route.delete('manga_mongo/:id', mangaController.deleteManga)
 
     return route
 }
