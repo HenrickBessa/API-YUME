@@ -11,6 +11,7 @@ const MangasSchema = new mongoose.Schema({
     },
     coverImage: {
         type : String,
+        required : true
     },
 })
 

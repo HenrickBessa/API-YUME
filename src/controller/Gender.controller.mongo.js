@@ -47,7 +47,7 @@ export const updateGender = async (req, res) => {
 
 export const deleteGender = async (req, res) => {
   try {
-    const gender = await genderService.findGenderByIdAndRemoveService(req.params.id)
+    const gender = await genderService.findGenderByIdAndDeleteService(req.params.id)
     if (!gender) {
       res.status(404).json({ message: 'Gênero não encontrado' })
       return

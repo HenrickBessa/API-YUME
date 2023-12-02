@@ -1,5 +1,5 @@
 import * as userService from '../services/User.service.mongo.js';
-
+import mongoose from 'mongoose';
 
 export const createUser = async (req, res) => {
   try {
@@ -40,26 +40,51 @@ export const findUserById = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     console.log(req.params.id)
-    const user = await userService.updateService(req.params.id, req.body);
+    const {name, password, email, phone} = req.body
+    console.log(name, password, email, phone)
+    if(!name && !password && !email && !phone){
+      res.status(400).send(
+        {message: "Submeter algo para atualização"
+      })
+    }
+    const id = req.params.id
+    console.log(id)
+    if(!mongoose.Types.ObjectId.isValid(id)){
+      return res.status(400).send(
+        {message: "Invalid ID"
+      })
+    }
+    
+    const user = await userService.updateService(id, req.body);
     if (!user) {
-      res.status(404).json({ message: 'Usuário não encontrado' });
+      res.status(404).json(
+        { message: 'Usuário não encontrado'
+       });
       return;
     }
     res.status(200).json(user).end()
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json(
+      { 
+        error: error.message 
+      });
   }
 };
 
 
 export const deleteUser = async (req, res) => {
   try {
-    const user = await userService.findByIdAndRemove(req.params.id);
+    const user = await userService.findByIdAndDelete(req.params.id);
     if (!user) {
-      res.status(404).json({ message: 'Usuário não encontrado' });
+      res.status(404).json(
+        { 
+          message: 'Usuário não encontrado' 
+        });
       return;
     }
-    res.status(200).json({ message: 'Usuário excluído com sucesso' }).end()
+    res.status(200).json(
+      { message: 'Usuário excluído com sucesso' 
+    }).end()
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
