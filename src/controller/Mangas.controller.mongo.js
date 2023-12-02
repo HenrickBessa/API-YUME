@@ -27,7 +27,7 @@ export const findMangaById = async (req, res) => {
   try {
     const manga = await mangaService.findMangasByIdService(req.params.id);
     if (!manga) {
-      res.status(404).json({ message: 'Anime não encontrado' });
+      res.status(404).json({ message: 'Manga não encontrado' });
       return;
     }
     res.status(200).json(manga).end()
