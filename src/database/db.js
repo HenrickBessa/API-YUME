@@ -1,5 +1,3 @@
-// import firebase from 'firebase-admin'
-// import serviceAccount from '../../credentials.json' assert { type: 'json' }
 import dotenv from 'dotenv'
 import axios from 'axios'
 import mongoose  from 'mongoose'
