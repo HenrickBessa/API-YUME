@@ -39,6 +39,7 @@ export const findUserById = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
+    console.log(req.params.id)
     const user = await userService.updateService(req.params.id, req.body);
     if (!user) {
       res.status(404).json({ message: 'Usuário não encontrado' });
