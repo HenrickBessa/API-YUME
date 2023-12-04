@@ -1,16 +1,5 @@
 import mongoose from "mongoose"
 
-const ChapterSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    pages:{
-        number: Number,
-        content: String
-    }
-});
-
 const MangasSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -24,7 +13,22 @@ const MangasSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    chapters: [ChapterSchema]
+    chapters: [
+        {
+            title:{
+                type: String,
+                required: true
+            },
+            number:{
+                type: Number,
+                required: true
+            },
+            content:{
+                type: String,
+                required: true
+            }
+        }
+    ]
 });
 
 export const Mangas = mongoose.model('Mangas', MangasSchema);
