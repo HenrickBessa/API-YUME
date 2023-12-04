@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
-import {RouterUser, RouterManga, RouterGender, RouterKitsu} from './src/routes/route.mongo.js'
+import {RouterUser, RouterManga, RouterGender, RouterKitsu, RouterChapter} from './src/routes/route.mongo.js'
 import {ConnectDatabase} from './src/database/db.js';
 
 dotenv.config();
@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 
 ConnectDatabase()
-
+app.use('/', RouterChapter())
 app.use('/', RouterUser());
 app.use('/', RouterManga());   
 app.use('/', RouterGender()); 

@@ -78,4 +78,19 @@ export const deleteManga= async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+
+}
+
+export const createChapter = async (req, res) => {
+  const { mangaId, number, content } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(mangaId)) {
+      return res.status(400).json({ message: "ID de mangá inválido" });
+  }
+
+  try {
+      const chapter = await mangaService.createChapterService(mangaId, { number, content });
+      res.status(201).json(chapter);
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+}
